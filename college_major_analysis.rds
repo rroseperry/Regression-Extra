@@ -1,0 +1,30 @@
+head(college)
+names(college)
+View(college)
+college1 <-na.omit(college)
+full <- lm(total ~ perc_women + perc_men + perc_employed + perc_employed_fulltime + perc_employed_parttime + 
+                 perc_employed_fulltime_yearround + perc_unemployed + perc_college_jobs + perc_non_college_jobs +
+                 perc_low_wage_jobs, data = college1)
+summary(full)
+
+jobyes <- lm(total~ perc_employed + perc_unemployed, data = college1)
+summary(jobyes)
+
+goodjob <-lm(total~perc_employed_fulltime + perc_employed_parttime +perc_employed_fulltime_yearround + 
+                   perc_college_jobs + perc_non_college_jobs + perc_low_wage_jobs, data = college1)
+summary(goodjob)
+
+nojob <- lm(total ~ perc_unemployed, data = college1)
+summary(nojob)
+
+fullpart <- lm(total ~ perc_employed_fulltime + perc_employed_parttime, data = college1)
+summary(fullpart)
+
+jobtype <- lm(total~perc_college_jobs + perc_non_college_jobs+ perc_low_wage_jobs, data = college1)
+summary(jobtype)
+
+workstudy <- lm(total ~ perc_college_jobs + perc_non_college_jobs, data = college1)
+summary(workstudy)
+
+simple <-lm(total ~ perc_non_college_jobs, data = college1)
+summary(simple)
